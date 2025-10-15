@@ -16,7 +16,7 @@ This library is available on [Maven Central](https://central.sonatype.com/artifa
 
 ## Usage for developers
 
-You either intialize the DAO with a connection parameters or through environment variables.
+You either initialize the DAO with a connection parameters or through environment variables.
 
 ```java
 import java.util.Optional;
@@ -40,9 +40,9 @@ var diveDAO = daoFactory.getDiveDAO();
 
 ```
 
-###Examples Java pseudo-code examples (expect typos):
+### Examples 
 
-### To get a list of all ROVs
+#### To get a list of all ROVs
 
 ```java
 import org.mbari.expd.jdbc.BaseDAOImpl;
@@ -50,7 +50,7 @@ import org.mbari.expd.jdbc.BaseDAOImpl;
 List<String> rovs = BaseDAOImpl.getAllRovNames();
 ```
 
-### To get all dives for a particular ROV:
+#### To get all dives for a particular ROV:
 
 ```java
 import org.mbari.expd.DiveDAO;
@@ -68,7 +68,7 @@ List<Integer> diveNumbersForRov = divesForRov.stream()
         .toList();
 ```
 
-### To get a dive object by ROV name and dive number
+#### To get a dive object by ROV name and dive number
 
 ```java
 import org.mbari.expd.DiveDAO;
