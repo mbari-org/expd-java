@@ -7,7 +7,7 @@
         <version>2.0.0</version>
     </parent>
     <artifactId>expd-core</artifactId>
-    <name>expd-core</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <dependencies>
         <!-- <dependency>
             <groupId>org.mbari.vcr4j</groupId>
