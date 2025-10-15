@@ -52,25 +52,25 @@ public class ExpeditionImpl implements Expedition {
     /**
      * Constructs ...
      *
-     * @param expeditionId
-     * @param accomplishments
-     * @param chiefScientist
-     * @param endDate
-     * @param equipmentDescription
-     * @param operatorsComments
-     * @param participants
-     * @param plannedTrackDescription
-     * @param principalInvestigator
-     * @param purpose
-     * @param regionDescription
-     * @param scheduledEndDate
-     * @param scheduledStartDate
-     * @param scienceObjectivesMet
-     * @param scientistComments
-     * @param sequenceNumber
-     * @param shipName
-     * @param startDate
-     * @param updatedBy
+     * @param expeditionId The expedition ID.
+     * @param accomplishments The accomplishments of the expedition.
+     * @param chiefScientist The name of the chief scientist.
+     * @param endDate The date the expedition ended.
+     * @param equipmentDescription The equipment description.
+     * @param operatorsComments The comments from the operators.
+     * @param participants The participants in the expedition.
+     * @param plannedTrackDescription The planned track description.
+     * @param principalInvestigator The name of the principal investigator.
+     * @param purpose The purpose of the expedition.
+     * @param regionDescription The region description.
+     * @param scheduledEndDate The date the expedition was scheduled to end.
+     * @param scheduledStartDate The date the expedition was scheduled to start.
+     * @param scienceObjectivesMet The science objectives met.
+     * @param scientistComments The comments from the scientists.
+     * @param sequenceNumber The sequence number of the expedition.
+     * @param shipName The name of the ship.
+     * @param startDate The date the expedition started.
+     * @param updatedBy The name of the user who last updated this expedition.
      */
     public ExpeditionImpl(Integer expeditionId, String accomplishments, String chiefScientist, Date endDate, String equipmentDescription,
                           String operatorsComments, String participants, String plannedTrackDescription,
@@ -101,12 +101,16 @@ public class ExpeditionImpl implements Expedition {
     }
 
 
+    /**
+     *
+     * @return The expedition ID.
+     */
     public Integer getExpeditionId() {
         return expeditionId;
     }
 
     /**
-     * @return
+     * @return The accomplishments of the expedition.
      */
     @Override
     public String getAccomplishments() {
@@ -114,7 +118,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The name of the chief scientist.
      */
     @Override
     public String getChiefScientist() {
@@ -122,7 +126,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The date the expedition ended.
      */
     @Override
     public Date getEndDate() {
@@ -130,7 +134,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The equipment description.
      */
     @Override
     public String getEquipmentDescription() {
@@ -138,7 +142,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The comments from the operators.
      */
     @Override
     public String getOperatorsComments() {
@@ -146,7 +150,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The participants in the expedition.
      */
     @Override
     public String getParticipants() {
@@ -154,7 +158,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The planned track description.
      */
     @Override
     public String getPlannedTrackDescription() {
@@ -162,7 +166,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The name of the principal investigator.
      */
     @Override
     public String getPrincipalInvestigator() {
@@ -170,7 +174,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The purpose of the expedition.
      */
     @Override
     public String getPurpose() {
@@ -178,7 +182,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The region description.
      */
     @Override
     public String getRegionDescription() {
@@ -186,7 +190,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The date the expedition was scheduled to end.
      */
     @Override
     public Date getScheduledEndDate() {
@@ -194,7 +198,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The date the expedition was scheduled to start.
      */
     @Override
     public Date getScheduledStartDate() {
@@ -202,7 +206,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The science objectives met.
      */
     @Override
     public String getScienceObjectivesMet() {
@@ -210,7 +214,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The comments from the scientists.
      */
     @Override
     public String getScientistComments() {
@@ -218,7 +222,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The sequence number of the expedition.
      */
     @Override
     public Integer getSequenceNumber() {
@@ -226,7 +230,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The name of the ship.
      */
     @Override
     public String getShipName() {
@@ -234,7 +238,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The date the expedition started.
      */
     @Override
     public Date getStartDate() {
@@ -242,7 +246,7 @@ public class ExpeditionImpl implements Expedition {
     }
 
     /**
-     * @return
+     * @return The name of the user who last updated this expedition.
      */
     @Override
     public String getUpdatedBy() {

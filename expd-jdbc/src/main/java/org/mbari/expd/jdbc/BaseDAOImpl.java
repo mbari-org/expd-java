@@ -22,7 +22,6 @@ import java.util.TimeZone;
  */
 public class BaseDAOImpl extends Queryable {
 
-    private static final ResourceBundle bundle = ResourceBundle.getBundle("expd-jdbc");
     public static final DateFormat DATE_FORMAT_UTC = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") {
         {
             setTimeZone(TimeZone.getTimeZone("UTC"));
@@ -41,7 +40,16 @@ public class BaseDAOImpl extends Queryable {
     public static final Integer OFFSET_SECONDS = 7;
 
     /**
-     * Constructs ...
+     * Constructs a new BaseDAOImpl, initializing it with the given JDBC parameters.
+     * The constructor sets up the database connection URL, username, password, and optionally
+     * loads the specified JDBC driver class if provided.
+     *
+     * @param params The JDBC parameters for creating and managing the database connection.
+     *               This includes the connection URL, username, password, and an optional
+     *               fully qualified name of the JDBC driver class to be loaded.
+     *               If the driver class is specified, the constructor attempts to load it.
+     *               If the driver class cannot be loaded, a {@link RuntimeException} is thrown.
+     * @throws RuntimeException If the specified driver class cannot be found or loaded.
      */
     public BaseDAOImpl(JdbcParameters params) {
         super(params.url(), params.username(), params.password(), params.driver().orElse(null));
@@ -54,6 +62,9 @@ public class BaseDAOImpl extends Queryable {
         });
     }
 
+    /**
+     * Returns the table prefix for the given ship.
+     */
     public static String resolveShipTablePrefix(String ship) {
         String fullname = resolveFullShipName(ship);
         return switch (fullname) {
@@ -65,6 +76,11 @@ public class BaseDAOImpl extends Queryable {
         };
     }
 
+    /**
+     * Returns the full name of the ship
+     * @param ship The short name of the ship
+     * @return The full name of the ship
+     */
     public static String resolveFullShipName(String ship) {
         String fullname = ship;
         if (ship != null) {
@@ -79,6 +95,11 @@ public class BaseDAOImpl extends Queryable {
         return UNDEFINED;
     }
 
+    /**
+     * Returns the table prefix for the given platform.
+     * @param platform The short name of the platform
+     * @return The table prefix for the given platform
+     */
     public static String resolveRovTablePrefix(String platform) {
         String fullName = resolveFullRovName(platform);
         return switch (fullName) {
@@ -89,6 +110,11 @@ public class BaseDAOImpl extends Queryable {
         };
     }
 
+    /**
+     * Returns the full name of the platform
+     * @param platform The short name of the platform
+     * @return The full name of the platform
+     */
     public static String resolveFullRovName(String platform) {
         String fullName = platform;
         if (platform != null) {
@@ -108,8 +134,8 @@ public class BaseDAOImpl extends Queryable {
     /**
      * Returns the short name commonly used in the expd database
      * 
-     * @param platform
-     * @return
+     * @param platform The full name of the platform
+     * @return The short name commonly used in the expd database
      */
     public static String toShortRovName(final String platform) {
         String shortName = platform;
@@ -127,6 +153,16 @@ public class BaseDAOImpl extends Queryable {
         return shortName;
     }
 
+    /**
+     * Resolves a collection of ROV (Remotely Operated Vehicle) names associated with the specified ship.
+     * The mapping between ships and their corresponding ROVs is predefined and specific to known ship names.
+     * If the ship name is unrecognized, the method returns an empty collection.
+     *
+     * @param shipName The short name of the ship for which the associated ROV names are to be resolved.
+     *                 This parameter is case-insensitive but must match the known ship naming convention.
+     * @return A collection of ROV names associated with the specified ship. If the ship name is not recognized,
+     *         an empty collection is returned.
+     */
     public static Collection<String> resolveRovByShip(final String shipName) {
         Collection<String> rovNames = new ArrayList<>();
         String fullShipName = resolveFullShipName(shipName);
@@ -143,6 +179,16 @@ public class BaseDAOImpl extends Queryable {
         return rovNames;
     }
 
+    /**
+     * Resolves a collection of ship names associated with the specified ROV (Remotely Operated Vehicle).
+     * The mapping is predefined for known ROVs, and for each ROV, its corresponding ships are identified.
+     * If the ROV name is not recognized, the method returns an empty collection.
+     *
+     * @param rovName The short name of the ROV for which the associated ship names are to be resolved.
+     *                This parameter is case-insensitive and must match known ROV naming conventions.
+     * @return A collection of ship names associated with the specified ROV. If the ROV name is not recognized,
+     *         an empty collection is returned.
+     */
     public static Collection<String> resolveShipByRov(final String rovName) {
         Collection<String> shipNames = new ArrayList<>();
         String fullRovName = resolveFullRovName(rovName);
@@ -160,6 +206,12 @@ public class BaseDAOImpl extends Queryable {
         return shipNames;
     }
 
+    /**
+     * Returns a list of all known ROV (Remotely Operated Vehicle) names.
+     * The list includes the names of all ROVs that are recognized and used within the
+     * context of the application or database.
+     * @return A list of all known ROV (Remotely Operated Vehicle) names.
+     */
     public static List<String> getAllRovNames() {
         return new ArrayList<String>() {
             {

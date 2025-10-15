@@ -46,11 +46,11 @@ public class ShipNavigationDatumImpl implements ShipNavigationDatum {
     /**
      * Constructs ...
      *
-     * @param date
-     * @param heading
-     * @param latitude
-     * @param longitude
-     * @param ship
+     * @param date The date of the navigation data.
+     * @param heading The heading of the ship.
+     * @param latitude The latitude of the ship.
+     * @param longitude The longitude of the ship.
+     * @param ship The name of the ship.
      */
     public ShipNavigationDatumImpl(Date date, Double heading, Double latitude, Double longitude,
                                    String ship) {
@@ -62,7 +62,7 @@ public class ShipNavigationDatumImpl implements ShipNavigationDatum {
     }
 
     /**
-     * @return
+     * @return The date of the navigation data.
      */
     @Override
     public Date getDate() {
@@ -70,7 +70,7 @@ public class ShipNavigationDatumImpl implements ShipNavigationDatum {
     }
 
     /**
-     * @return
+     * @return The heading of the ship.
      */
     @Override
     public Double getHeading() {
@@ -78,7 +78,7 @@ public class ShipNavigationDatumImpl implements ShipNavigationDatum {
     }
 
     /**
-     * @return
+     * @return The latitude of the ship.
      */
     @Override
     public Double getLatitude() {
@@ -86,13 +86,17 @@ public class ShipNavigationDatumImpl implements ShipNavigationDatum {
     }
 
     /**
-     * @return
+     * @return The longitude of the ship.
      */
     @Override
     public Double getLongitude() {
         return longitude;
     }
 
+    /**
+     *
+     * @return The name of the ship.
+     */
     @Override
     public String getShip() {
         return ship;

@@ -47,12 +47,20 @@ public class CameraDatumDAOImpl extends BaseDAOImpl implements CameraDatumDAO {
 
     private static final Logger log = System.getLogger(CameraDatumDAOImpl.class.getName());
 
-    /**  */
+    /**
+     * Database columns to select when querying camera data.
+     */
     public static final String SELECT_COLUMNS = " DateTimeGMT, betaTimecode, hdTimecode, mainFocus, mainZoom, mainIris ";
 
-    /**  */
+    /**
+     * Database columns to select when querying camera data for Doc Ricketts dives.
+     */
     public static final String SELECT_COLUMNS_DOC_RICKETTS = " DateTimeGMT, betaTimecode, hdTimecode, focusVolts, zoomVolts, irisVolts ";
 
+    /**
+     * Constructs ...
+     * @param params The JDBC parameters
+     */
     public CameraDatumDAOImpl(JdbcParameters params) {
         super(params);
     }
@@ -77,6 +85,13 @@ public class CameraDatumDAOImpl extends BaseDAOImpl implements CameraDatumDAO {
         return executeQueryFunction(sql, new LoadDataFunction(dive.getRovName()));
     }
 
+    /**
+     * Retrieve all CameraDatum's for the platform at the specified date.
+     * @param platform The platform name (e.g. Ventana or Tiburon)
+     * @param date The date to retrieve data for
+     * @param millisecTolerance Specifies the widthInMillis of the time window to pull samples
+     * @return A {@link List} of {@link CameraDatum} objects containing
+     */
     public List<CameraDatum> findAllNearDate(String platform, Date date, int millisecTolerance) {
         Date startDate = new Date(date.getTime() - millisecTolerance);
         Date endDate = new Date(date.getTime() + millisecTolerance);
@@ -199,18 +214,18 @@ public class CameraDatumDAOImpl extends BaseDAOImpl implements CameraDatumDAO {
         /**
          * Constructs ...
          *
-         * @param platformName
+         * @param platformName The platform name (e.g. Ventana or Tiburon)
          */
         public LoadDataFunction(String platformName) {
             this.platformName = platformName;
         }
 
         /**
+         * Execute function on a resultset
+         * @param resultSet The resultset to process
+         * @return A {@link List} of {@link CameraDatum} objects
          *
-         * @param resultSet
-         * @return
-         *
-         * @throws SQLException
+         * @throws SQLException if a database access error occurs while reading from the result set
          */
         @Override
         public List<CameraDatum> apply(ResultSet resultSet) throws SQLException {

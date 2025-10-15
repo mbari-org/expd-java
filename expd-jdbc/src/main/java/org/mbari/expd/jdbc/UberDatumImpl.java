@@ -28,45 +28,83 @@ public class UberDatumImpl implements UberDatum, Comparable<UberDatum> {
     private NavigationDatum navigationDatum;
     private CtdDatum ctdDatum;
     
+    /**
+     * Creates an empty UberDatumImpl with all components unset.
+     */
     public UberDatumImpl() {
     }
 
+    /**
+     * Creates a new UberDatumImpl with the provided component data objects.
+     * @param cameraDatum the camera data component
+     * @param navigationDatum the navigation data component
+     * @param ctdDatum the CTD data component
+     */
     public UberDatumImpl(CameraDatum cameraDatum, NavigationDatum navigationDatum, CtdDatum ctdDatum) {
         this.cameraDatum = cameraDatum;
         this.navigationDatum = navigationDatum;
         this.ctdDatum = ctdDatum;
     }
 
+    /**
+     * Returns the camera data component.
+     * @return the CameraDatum, or null if not set
+     */
     @Override
     public CameraDatum getCameraDatum() {
         return cameraDatum;
     }
 
+    /**
+     * Sets the camera data component.
+     * @param cameraDatum the CameraDatum to set
+     */
     @Override
     public void setCameraDatum(CameraDatum cameraDatum) {
         this.cameraDatum = cameraDatum;
     }
 
+    /**
+     * Returns the CTD data component.
+     * @return the CtdDatum, or null if not set
+     */
     @Override
     public CtdDatum getCtdDatum() {
         return ctdDatum;
     }
 
+    /**
+     * Sets the CTD data component.
+     * @param ctdDatum the CtdDatum to set
+     */
     @Override
     public void setCtdDatum(CtdDatum ctdDatum) {
         this.ctdDatum = ctdDatum;
     }
 
+    /**
+     * Returns the navigation data component.
+     * @return the NavigationDatum, or null if not set
+     */
     @Override
     public NavigationDatum getNavigationDatum() {
         return navigationDatum;
     }
 
+    /**
+     * Sets the navigation data component.
+     * @param navigationDatum the NavigationDatum to set
+     */
     @Override
     public void setNavigationDatum(NavigationDatum navigationDatum) {
         this.navigationDatum = navigationDatum;
     }
 
+    /**
+     * Compares this object to the specified object for equality based on its components.
+     * @param obj the object to compare
+     * @return true if equal; false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -88,6 +126,10 @@ public class UberDatumImpl implements UberDatum, Comparable<UberDatum> {
         return true;
     }
 
+    /**
+     * Returns a hash code based on the component objects.
+     * @return the hash code
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -97,12 +139,22 @@ public class UberDatumImpl implements UberDatum, Comparable<UberDatum> {
         return hash;
     }
 
+    /**
+     * Compares this object with the specified {@link UberDatum} for order using camera dates.
+     * @param o the UberDatum to compare to
+     * @return a negative integer, zero, or a positive integer as this object is less than,
+     *         equal to, or greater than the specified object
+     */
     @Override
     public int compareTo(UberDatum o) {
         return cameraDatum.getDate().compareTo(o.getCameraDatum().getDate());
     }
 
 
+    /**
+     * Returns a human-readable representation that includes component dates.
+     * @return the string representation
+     */
     @Override
     public String toString() {
 

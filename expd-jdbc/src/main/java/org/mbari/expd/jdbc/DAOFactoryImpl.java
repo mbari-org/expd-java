@@ -27,39 +27,71 @@ public class DAOFactoryImpl implements DAOFactory {
 
     private final JdbcParameters jdbcParameters;
 
+    /**
+     * Constructs a new DAO factory with the given JDBC parameters
+     * @param jdbcParameters The JDBC parameters for creating and managing the database connection.
+     */
     public DAOFactoryImpl(JdbcParameters jdbcParameters) {
         this.jdbcParameters = jdbcParameters;
     }
 
+    /**
+     * Constructs a new DAO factory with the JDBC parameters read from the environment variables
+     * defined in {@link AppConfig}.
+     */
     public DAOFactoryImpl() {
         this(AppConfig.fromEnv());
     }
 
+    /**
+     * Creates a new {@link CameraDatumDAO} instance.
+     * @return The new instance
+     */
     @Override
     public CameraDatumDAO newCameraDatumDAO() {
         return new CameraDatumDAOImpl(jdbcParameters);
     }
 
+    /**
+     * Creates a new {@link CtdDatumDAO} instance.
+     * @return The new instance
+     */
     @Override
     public CtdDatumDAO newCtdDatumDAO() {
         return new CtdDatumDAOImpl(jdbcParameters);
     }
 
+    /**
+     * Creates a new {@link DiveDAO} instance.
+     * @return The new instance
+     */
     @Override
     public DiveDAO newDiveDAO() {
         return new DiveDAOImpl(jdbcParameters);
     }
 
+    /**
+     * Creates a new {@link ExpeditionDAO} instance.
+     * @return The new instance
+     */
     @Override
     public ExpeditionDAO newExpeditionDAO() {
         return new ExpeditionDAOImpl(jdbcParameters);
     }
 
+    /**
+     * Creates a new {@link NavigationDatumDAO} instance.
+     * @return The new instance
+     */
     @Override
     public NavigationDatumDAO newNavigationDatumDAO() {
         return new NavigationDatumDAOImpl(jdbcParameters);
     }
 
+    /**
+     * Creates a new {@link UberDatumDAO} instance.
+     * @return The new instance
+     */
     @Override
     public UberDatumDAO newUberDatumDAO() {
        return new UberDatumDAOImpl(newCameraDatumDAO(), newNavigationDatumDAO(), newCtdDatumDAO());

@@ -44,10 +44,19 @@ public class ExpeditionDAOImpl extends BaseDAOImpl implements ExpeditionDAO {
 
     private final QueryFunction<List<Expedition>> queryFunction = new LoadExpdFunction();
 
+    /**
+     * Constructor
+     * @param jdbcParameters The JDBC parameters used to connect to the database
+     */
     public ExpeditionDAOImpl(JdbcParameters jdbcParameters) {
         super(jdbcParameters);
     }
 
+    /**
+     * Find all expeditions for a given dive
+     * @param dive The dive
+     * @return A collection of expeditions
+     */
     @Override
     public Collection<Expedition> findByDive(Dive dive) {
         String sql = "SELECT " + SELECT_COLUMNS + " " + FROM_STATEMENT + " WHERE e.startDtg <= '" +
@@ -65,13 +74,17 @@ public class ExpeditionDAOImpl extends BaseDAOImpl implements ExpeditionDAO {
         return exactMatches;
     }
 
+    /**
+     * Find all expeditions in the database
+     * @return A collection of expeditions
+     */
     @Override
     public Collection<Expedition> findAll() {
         String sql = "SELECT " + SELECT_COLUMNS + " " + FROM_STATEMENT;
         return executeQueryFunction(sql, queryFunction);
     }
 
-    private class LoadExpdFunction implements QueryFunction<List<Expedition>> {
+    private static class LoadExpdFunction implements QueryFunction<List<Expedition>> {
 
         private final Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
 

@@ -42,6 +42,10 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
             "Dive d ON d.DiveID = ds.diveid";
     private final QueryFunction<List<Dive>> queryFunction = new LoadDiveFunction();
 
+    /**
+     * Constructor
+     * @param jdbcParameters The JDBC parameters used to connect to the database
+     */
     public DiveDAOImpl(JdbcParameters jdbcParameters) {
         super(jdbcParameters);
     }
@@ -50,16 +54,16 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
      * Returns all the dive numbers that occur for a platform using a given
      * trackingNumber. The trackingNumber parsed as YYYYDDD date format
      *
-     * @param platform
-     * @param trackingNumber
+     * @param platform The platform name
+     * @param trackingNumber The tracking number
      * @return A List of dive numbers
      */
     @Override
     public Collection<Dive> findByPlatformAndTrackingNumber(String platform, Integer trackingNumber) {
         Calendar utcCalendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         String numberString = trackingNumber.toString();
-        Integer year = new Integer(numberString.substring(0, 4));
-        Integer dayOfYear = new Integer(numberString.substring(4, 7));
+        int year = Integer.parseInt(numberString.substring(0, 4));
+        int dayOfYear = Integer.parseInt(numberString.substring(4, 7));
 
         utcCalendar.set(GregorianCalendar.YEAR, year);
         utcCalendar.set(GregorianCalendar.DAY_OF_YEAR, dayOfYear);
@@ -84,6 +88,12 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
 
     }
 
+    /**
+     * Returns a single dive for a given platform and dive number.
+     * @param platform The platform name
+     * @param diveNumber The dive number
+     * @return The dive, or null if none found
+     */
     @Override
     public Dive findByPlatformAndDiveNumber(String platform, Integer diveNumber) {
         String sql = "SELECT " + SELECT_COLUMNS + " " + FROM_STATEMENT + " WHERE d.rovname = '" +
@@ -92,6 +102,11 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
         return dives.size() > 0 ? dives.get(0) : null;
     }
 
+    /**
+     * Returns all dives for a given platform.
+     * @param platform The platform name
+     * @return A collection of dives
+     */
     @Override
     public Collection<Dive> findByPlatform(String platform) {
         String sql = "SELECT " + SELECT_COLUMNS + " " + FROM_STATEMENT + " WHERE d.rovname = '" +
@@ -100,6 +115,11 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
     }
 
 
+    /**
+     * Returns all dives within a given envelope.
+     * @param envelope The envelope to search for dives within
+     * @return A collection of dives
+     */
     @Override
     public Collection<Dive> findAllWithinEnvelope(Envelope<Double> envelope) {
         String sql = "SELECT d.rovname AS RovName, d.divenumber AS DiveNumber " +
@@ -122,12 +142,22 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
         return executeQueryFunction(sql, queryFunction);
     }
 
+    /**
+     * Returns all dives in the database
+     * @return A collection of dives
+     */
     @Override
     public Collection<Dive> findAll() {
         String sql = "SELECT " + SELECT_COLUMNS + " " + FROM_STATEMENT + " ORDER BY d.divenumber";
         return executeQueryFunction(sql, queryFunction);
     }
 
+    /**
+     * Returns a single dive for a given platform and date.
+     * @param platform The platform name
+     * @param date The date to search for
+     * @return The dive, or null if none found
+     */
     @Override
     public Dive findByPlatformAndDate(String platform, Date date) {
         String utc = DATE_FORMAT_UTC.format(date);
@@ -138,6 +168,11 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
         return dives.size() > 0 ? dives.get(0) : null;
     }
 
+    /**
+     * Returns all dives for a given expedition.
+     * @param expedition The expedition
+     * @return A collection of dives
+     */
     @Override
     public Collection<Dive> findAllByExpedition(Expedition expedition) {
         Collection<String> rovNames = resolveRovByShip(expedition.getShipName());
@@ -156,7 +191,7 @@ public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
      * Function that parses the returns of a {@link ResultSet} into {@link Dive}
      * objects.
      */
-    private class LoadDiveFunction implements QueryFunction<List<Dive>> {
+    private static class LoadDiveFunction implements QueryFunction<List<Dive>> {
 
         private final Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
 

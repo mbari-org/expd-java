@@ -34,14 +34,14 @@ public class DatumFactoryImpl implements DatumFactory {
 
     /**
      *
-     * @param platformName
-     * @param date
-     * @param timecode
-     * @param alternativeTimecode
-     * @param focus
-     * @param zoom
-     * @param iris
-     * @return
+     * @param platformName The name of the platform that took the data.
+     * @param date The date the sample was taken.
+     * @param timecode The timecode of the video player
+     * @param alternativeTimecode The alternative timecode of the video player
+     * @param focus The focus level of the camera
+     * @param zoom The zoom level of the camera
+     * @param iris The iris level of the camera
+     * @return A new instance of CameraDatum
      */
     @Override
     public CameraDatum newCameraDatum(String platformName, Date date, String timecode, String alternativeTimecode,
@@ -51,13 +51,13 @@ public class DatumFactoryImpl implements DatumFactory {
 
     /**
      *
-     * @param platformName
-     * @param date
-     * @param temperature
-     * @param salinity
-     * @param oxygen
-     * @param lightTransmission
-     * @return
+     * @param platformName The name of the platform that took the data.
+     * @param date The date the sample was taken.
+     * @param temperature The temperature of the water in degrees Celsius.
+     * @param salinity The salinity of the water in PSU.
+     * @param oxygen The concentration of oxygen in the water in ml/L.
+     * @param lightTransmission The light transmission of the water in percent.
+     * @return A new instance of CtdDatum
      */
     @Override
     public CtdDatum newCtdDatum(String platformName, Date date, Float temperature, Float salinity, Float oxygen,
@@ -68,17 +68,17 @@ public class DatumFactoryImpl implements DatumFactory {
 
     /**
      *
-     * @param platformName
-     * @param date
-     * @param temperature
-     * @param salinity
-     * @param oxygen1
-     * @param oxygen1Flag
-     * @param oxygen2
-     * @param oxygen2Flag
-     * @param lightTransmission
-     * @param pressure
-     * @return
+     * @param platformName The name of the platform that took the data.
+     * @param date The date the sample was taken.
+     * @param temperature The temperature of the water in degrees Celsius.
+     * @param salinity The salinity of the water in PSU.
+     * @param oxygen1 The concentration of oxygen in the water in ml/L.
+     * @param oxygen1Flag The quality flag for oxygen1.
+     * @param oxygen2 The concentration of oxygen in the water in ml/L.
+     * @param oxygen2Flag The quality flag for oxygen2.
+     * @param lightTransmission The light transmission of the water in percent.
+     * @param pressure The pressure of the water in dbar.
+     * @return A new instance of CtdDatum
      */
     public CtdDatum newCtdDatum(String platformName, Date date, Float temperature, Float salinity, Float oxygen1,
                                 Integer oxygen1Flag, Float oxygen2, Integer oxygen2Flag, Float lightTransmission,
@@ -89,15 +89,15 @@ public class DatumFactoryImpl implements DatumFactory {
 
     /**
      *
-     * @param diveId
-     * @param rovName
-     * @param diveNumber
-     * @param startDate
-     * @param endDate
-     * @param chiefScientist
-     * @param briefAccomplishments
-     * @param latitude
-     * @param longitude
+     * @param diveId The unique identifier for the dive.
+     * @param rovName The name of the Rover that took the dive.
+     * @param diveNumber The dive number.
+     * @param startDate The date the dive began.
+     * @param endDate The date the dive ended.
+     * @param chiefScientist The name of the chief scientist.
+     * @param briefAccomplishments A brief description of the accomplishments of the dive.
+     * @param latitude The latitude of the dive site.
+     * @param longitude The longitude of the dive site.
      * @return
      */
     public Dive newDive(Integer diveId, String rovName, Integer diveNumber, Date startDate, Date endDate,
@@ -107,7 +107,7 @@ public class DatumFactoryImpl implements DatumFactory {
     }
 
     /**
-     * @return
+     * @return The new instance of Expedition
      */
     @Override
     public Expedition newExpedition() {
@@ -116,21 +116,20 @@ public class DatumFactoryImpl implements DatumFactory {
 
     /**
      *
-     * @param platformName
-     * @param altitude
-     * @param date
-     * @param depth
-     * @param pressure
-     * @param heading
-     * @param latitude
-     * @param longitude
-     * @param pitch
-     * @param qcFlag
-     * @param roll
-     * @param shipHeading
-     * @param shipLatitude
-     * @param shipLongitude
-     * @return
+     * @param platformName The name of the platform that took the data.
+     * @param date The date the sample was taken.
+     * @param depth The depth of the water in meters.
+     * @param pressure The pressure of the water in dbar.
+     * @param heading The heading of the ROV in degrees.
+     * @param latitude The latitude of the ROV.
+     * @param longitude The longitude of the ROV.
+     * @param pitch The pitch of the ROV in degrees.
+     * @param qcFlag The quality flag for the data.
+     * @param roll The roll of the ROV in degrees.
+     * @param shipHeading The heading of the ship in degrees.
+     * @param shipLatitude The latitude of the ship.
+     * @param shipLongitude The longitude of the ship.
+     * @return A new instance of NavigationDatum
      */
     @Override
     public NavigationDatum newNavigationDatum(String platformName, Float altitude, Date date, Float depth,
@@ -142,10 +141,10 @@ public class DatumFactoryImpl implements DatumFactory {
 
     /**
      *
-     * @param cameraDatum
-     * @param navigationDatum
-     * @param ctdDatum
-     * @return
+     * @param cameraDatum The camera datum
+     * @param navigationDatum The navigation datum
+     * @param ctdDatum The ctd datum
+     * @return A new instance of UberDatum
      */
     @Override
     public UberDatum newUberDatum(CameraDatum cameraDatum, NavigationDatum navigationDatum, CtdDatum ctdDatum) {

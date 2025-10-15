@@ -37,12 +37,31 @@ public class UberDatumDAOImpl implements UberDatumDAO {
     
     private static final Logger log = System.getLogger(UberDatumDAOImpl.class.getName());
 
+    /**
+     * Creates a new instance of UberDatumDAOImpl
+     * @param cameraDatumDAO The DAO for camera data
+     * @param navigationDatumDAO The DAO for navigation data
+     * @param ctdDatumDAO The DAO for conductivity, temperature, depth data
+     */
     public UberDatumDAOImpl(CameraDatumDAO cameraDatumDAO, NavigationDatumDAO navigationDatumDAO, CtdDatumDAO ctdDatumDAO) {
         this.cameraDatumDAO = cameraDatumDAO;
         this.navigationDatumDAO = navigationDatumDAO;
         this.ctdDatumDAO = ctdDatumDAO;
     }
 
+    /**
+     * Fetches a list of {@link UberDatum} objects combining navigation, CTD, and camera data for a specific dive.
+     * This method retrieves data from various sources including navigation, camera, and CTD data,
+     * and aggregates them into an {@link UberDatum} object for each data point.
+     * If no data is found for certain timestamps or errors occur while fetching data, the corresponding
+     * {@link UberDatum} fields may be null.
+     *
+     * @param dive The dive object containing metadata about the dive such as ROV name and dive number.
+     * @param isHD Indicates whether to fetch high-definition camera data (true) or standard-definition camera data (false).
+     * @param toleranceSec The time tolerance, in seconds, within which data from different datasets will be considered for aggregation.
+     * @return A list of {@link UberDatum} objects, where each combines the matching navigation, CTD, and camera data
+     * for the same timestamp, or contains null for any missing data.
+     */
     @Override
     public List<UberDatum> fetchData(Dive dive, boolean isHD, double toleranceSec) {
         List<UberDatum> data = new ArrayList<>();
@@ -90,9 +109,9 @@ public class UberDatumDAOImpl implements UberDatumDAO {
      * Fetch data (but without cameradata) only nav and ctd, camera is null. All CTD for dive is fetched,
      * but with if no navigation within +/- tolerance is found the navigation will be null.
      *
-     * @param dive
-     * @param toleranceSec
-     * @return
+     * @param dive The dive to fetch data for
+     * @param toleranceSec The tolerance in seconds
+     * @return A list of UberDatum objects.
      */
     @Override
     public List<UberDatum> fetchCtdData(Dive dive, double toleranceSec) {

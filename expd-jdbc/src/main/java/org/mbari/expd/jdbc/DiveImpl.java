@@ -28,11 +28,26 @@ public class DiveImpl implements Dive {
     private String briefAccomplishments;
     private Double latitude;
     private Double longitude;
-    
+
+    /**
+     * Constructs ...
+     */
     public DiveImpl() {
         
     }
 
+    /**
+     * Constructs ...
+     * @param diveId The dive ID.
+     * @param rovName The name of the Rover that took the dive.
+     * @param diveNumber The dive number.
+     * @param startDate The date the dive began.
+     * @param endDate The date the dive ended.
+     * @param chiefScientist The name of the chief scientist.
+     * @param briefAccomplishments A brief description of the accomplishments of the dive.
+     * @param latitude The latitude of the dive site.
+     * @param longitude The longitude of the dive site.
+     */
     public DiveImpl(Integer diveId, String rovName, Integer diveNumber, Date startDate, Date endDate,
                     String chiefScientist, String briefAccomplishments, Double latitude, Double longitude) {
         this.diveId = diveId;
@@ -46,45 +61,80 @@ public class DiveImpl implements Dive {
         this.briefAccomplishments = briefAccomplishments;
     }
 
+    /**
+     * Returns the dive ID.
+     * @return the diveId
+     */
     public Integer getDiveId() {
         return diveId;
     }
 
+    /**
+     * Returns the name of the ROV used for the dive.
+     * @return the rovName
+     */
     @Override
     public String getRovName() {
         return rovName;
     }
 
+    /**
+     * Returns a brief description of the accomplishments of the dive.
+     * @return the briefAccomplishments
+     */
     @Override
     public String getBriefAccomplishments() {
         return briefAccomplishments;
     }
 
+    /**
+     * Returns the name of the chief scientist.
+     * @return the chiefScientist
+     */
     @Override
     public String getChiefScientist() {
         return chiefScientist;
     }
 
+    /**
+     *
+     * @return The latitude of the dive site.
+     */
     @Override
     public Double getLatitude() {
         return latitude;
     }
 
+    /**
+     *
+     * @return The longitude of the dive site.
+     */
     @Override
     public Double getLongitude() {
         return longitude;
     }
 
+    /**
+     *
+     * @return The dive number.
+     */
     @Override
     public Integer getDiveNumber() {
         return diveNumber;
     }
 
-    @Override
+    /**
+     *
+     * @return The date the dive ended.
+     */
     public Date getEndDate() {
         return endDate;
     }
 
+    /**
+     *
+     * @return The date the dive began.
+     */
     @Override
     public Date getStartDate() {
         return startDate;

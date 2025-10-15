@@ -29,11 +29,13 @@ public class Queryable {
     private final String jdbcUsername;
 
     /**
-     * Constructs ...
+     * Constructs a new Queryable helper for executing SQL queries and updates.
      * @param jdbcUrl The JDBC URL to the EXPD database.
      * @param jdbcUsername The username used to connect to the database.
      * @param jdbcPassword The password used to connect to the database.
      * @param driverClass Optional. The fully qualified name of the JDBC driver class.
+     *                     If non-null, the class will be loaded via {@link Class#forName(String)}.
+     * @throws RuntimeException if the given driver class cannot be loaded
      */
     public Queryable(String jdbcUrl, String jdbcUsername, String jdbcPassword, String driverClass) {
         this.jdbcUrl = jdbcUrl;
@@ -49,6 +51,12 @@ public class Queryable {
         }
     }
 
+    /**
+     * Executes the given SQL SELECT query and wraps the {@link ResultSet} in a {@link QueryResults} helper.
+     * @param sql a SELECT statement to execute
+     * @return a QueryResults object containing the results; never null
+     * @throws RuntimeException if an error occurs executing the query
+     */
     public QueryResults executeQuery(String sql) {
 
         // Just wrap the QueryResults returned by the sql query with a QueryResults object
@@ -63,6 +71,14 @@ public class Queryable {
 
     }
 
+/**
+     * Executes the given SQL SELECT query and maps the {@link ResultSet} using the provided function.
+     * @param query the SQL SELECT statement to execute
+     * @param queryFunction a mapping function that consumes the {@link ResultSet} and returns a value
+     * @param <T> the result type produced by the mapping function
+     * @return the object produced by the mapping function
+     * @throws RuntimeException if an error occurs executing the query or mapping results
+     */
     public <T> T executeQueryFunction(String query, QueryFunction<T> queryFunction) {
         log.log(Logger.Level.DEBUG, "Executing SQL query: \n\t" + query);
 
@@ -95,6 +111,12 @@ public class Queryable {
         return object;
     }
 
+/**
+     * Executes the given SQL update statement (INSERT, UPDATE, or DELETE).
+     * @param updateSql an update statement to execute
+     * @return the number of rows affected
+     * @throws RuntimeException if an error occurs executing the update
+     */
     public int executeUpdate(String updateSql) {
         log.log(Logger.Level.DEBUG,"Executing SQL update: \n\t" + updateSql);
 
@@ -127,10 +149,9 @@ public class Queryable {
 
 
     /**
-     * Opens a connection to the EXPD database.
-     * @return A {@link Connection} to the EXPD database. The connection should
-     *      be closed when you're done with it.
-     * @throws SQLException
+     * Opens a new JDBC connection to the EXPD database using the configured URL and credentials.
+     * @return a new {@link Connection} to the EXPD database
+     * @throws SQLException if the connection cannot be established
      */
     public Connection getConnection() throws SQLException {
         log.log(Logger.Level.DEBUG, "Opening JDBC connection:" + jdbcUsername + " @ " + jdbcUrl);
@@ -139,9 +160,8 @@ public class Queryable {
     }
 
     /**
-     * Closes the connection used in the current thread.
-     * @throws SQLException
-     * @deprecated Connections are closed after every transaction.
+     * No-op retained for backward compatibility. Connections are closed after every transaction.
+     * @deprecated Connections are closed after every transaction and there is no persistent connection to close.
      */
     public void close() {
         // DO NOTHING.

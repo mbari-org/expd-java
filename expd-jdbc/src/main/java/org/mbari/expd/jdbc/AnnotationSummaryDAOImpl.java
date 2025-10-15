@@ -50,15 +50,30 @@ public class AnnotationSummaryDAOImpl extends BaseDAOImpl implements AnnotationS
         return xs;
     };
 
+    /**
+     * Creates a new DAO for retrieving annotation summaries.
+     * @param jdbcParameters JDBC connection parameters
+     */
     public AnnotationSummaryDAOImpl(JdbcParameters jdbcParameters) {
         super(jdbcParameters);
     }
 
+    /**
+     * Finds an annotation summary for the specified dive.
+     * @param dive the dive to search for
+     * @return the matching {@link AnnotationSummary}, or null if none found
+     */
     @Override
     public AnnotationSummary findByDive(Dive dive) {
         return findByDive(dive.getRovName(), dive.getDiveNumber());
     }
 
+    /**
+     * Finds an annotation summary for the specified platform and dive number.
+     * @param platform the platform (ROV) name
+     * @param diveNumber the dive number
+     * @return the matching {@link AnnotationSummary}, or null if none found
+     */
     @Override
     public AnnotationSummary findByDive(String platform, Integer diveNumber) {
         String sql = "SELECT " + SELECT_COLUMNS + " " + FROM_STATEMENT +

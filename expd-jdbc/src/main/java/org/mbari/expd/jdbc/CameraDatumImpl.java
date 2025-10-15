@@ -30,6 +30,16 @@ public class CameraDatumImpl implements CameraDatum, Comparable<CameraDatum> {
     private final Float zoom;
     private final Float iris;
 
+    /**
+     * Constructs ...
+     * @param platformName The name of the platform that took the image.
+     * @param date The date the sample was taken.
+     * @param timecode The timecode of the video player
+     * @param alternativeTimecode The alternative timecode of the video player
+     * @param focus The focus level of the camera
+     * @param zoom The zoom level of the camera
+     * @param iris The iris level of the camera
+     */
     public CameraDatumImpl(String platformName, Date date, String timecode,
             String alternativeTimecode, Float focus, Float zoom, Float iris) {
         this.platformName = platformName;
@@ -42,36 +52,64 @@ public class CameraDatumImpl implements CameraDatum, Comparable<CameraDatum> {
     }
 
 
+    /**
+     * Returns the platform name.
+     * @return the platform name
+     */
     @Override
     public String getPlatformName() {
         return platformName;
     }
 
+    /**
+     * Returns the date.
+     * @return the date
+     */
     @Override
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Returns the timecode.
+     * @return the timecode
+     */
     @Override
     public String getTimecode() {
         return timecode;
     }
 
+    /**
+     * Returns the alternative timecode.
+     * @return the alternative timecode
+     */
     @Override
     public String getAlternativeTimecode() {
         return alternativeTimecode;
     }
 
+    /**
+     * Returns the focus.
+     * @return the focus
+     */
     @Override
     public Float getFocus() {
         return focus;
     }
 
+    /**
+     * Returns the zoom.
+     * @return the zoom
+     */
     @Override
     public Float getZoom() {
         return zoom;
     }
 
+    /**
+     * Returns the iris.
+     * @return the iris
+     */
     @Override
     public Float getIris() {
         return iris;

@@ -53,7 +53,7 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
      * Fetch the best available navigation and cameradata for a dive. Navigation
      * is matched to the Camera Log times usign the closes time within +/-7 seconds
      *
-     * @param dive
+     * @param dive The dive to fetch data for
      * @return A list of ROVDatums.
      */
     @Override
@@ -77,6 +77,11 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
 
     }
 
+    /**
+     * Check to see if there is edited navigation data for the dive.
+     * @param dive The dive to check
+     * @return true if there is edited navigation data for the dive.
+     */
     public boolean hasEditedNavigationData(Dive dive) {
         String prefix = resolveRovTablePrefix(dive.getRovName());
         String tableEdited = prefix + "CleanNavData";
@@ -99,7 +104,7 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
      * Fetch the best available navigation and cameradata for a dive. Navigation
      * is matched to the Camera Log times usign the closes time within +/-7 seconds
      *
-     * @param dive
+     * @param dive The dive to fetch data for
      * @return A list of ROVDatums.
      */
     public List<NavigationDatum> fetchEditedNavigationData(Dive dive) {
@@ -126,10 +131,10 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
      * Fetch nearest navigation data for each date provided that is within +/-
      * seconds defined by the parameter 'toleranceSec'. If no datum is found within
      * the tolerance a null is returned in for that date in the list.
-     * @param dive
-     * @param dates
-     * @param toleranceSec
-     * @return
+     * @param dive The dive to fetch data for
+     * @param dates The list of dates to fetch data for
+     * @param toleranceSec The tolerance in seconds
+     * @return A list of NavigationDatum objects.
      */
     @Override
     public List<NavigationDatum> fetchNavigationData(Dive dive, List<Date> dates, double toleranceSec) {
@@ -189,6 +194,11 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
 
     }
 
+    /**
+     * Fetch the best available navigation and cameradata for a dive.
+     * @param dive The dive to fetch data for
+     * @return A list of ROVDatums.
+     */
     @Override
     public List<NavigationDatum> fetchBestNavigationData(Dive dive) {
         List<NavigationDatum> data = fetchEditedNavigationData(dive);
@@ -199,7 +209,7 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
     }
 
 
-    private class LoadDataFunction implements QueryFunction<List<NavigationDatum>> {
+    private static class LoadDataFunction implements QueryFunction<List<NavigationDatum>> {
 
         private final Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         private final String platformName;
@@ -207,7 +217,7 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
         /**
          * Constructs ...
          *
-         * @param platformName
+         * @param platformName The platform name (e.g. Ventana or Tiburon)
          */
         public LoadDataFunction(String platformName) {
             this.platformName = platformName;
@@ -215,10 +225,10 @@ public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDat
 
         /**
          *
-         * @param resultSet
-         * @return
+         * @param resultSet The resultset to process
+         * @return A List of NavigationDatum objects
          *
-         * @throws SQLException
+         * @throws SQLException if a database access error occurs while reading from the result set
          */
         @Override
         public List<NavigationDatum> apply(ResultSet resultSet) throws SQLException {

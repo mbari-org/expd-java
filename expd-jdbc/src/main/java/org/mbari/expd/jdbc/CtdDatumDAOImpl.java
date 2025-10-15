@@ -30,6 +30,10 @@ public class CtdDatumDAOImpl extends BaseDAOImpl implements CtdDatumDAO {
     
     public static final String SELECT_COLUMNS = " DatetimeGMT, t, s, o2, o2Flag, o2alt, o2altFlag, light, p ";
 
+    /**
+     * Constructs ...
+     * @param params The JDBC parameters
+     */
     public CtdDatumDAOImpl(JdbcParameters params) {
         super(params);
     }
@@ -121,18 +125,19 @@ public class CtdDatumDAOImpl extends BaseDAOImpl implements CtdDatumDAO {
         /**
          * Constructs ...
          *
-         * @param platformName
+         * @param platformName The platform name (e.g. Ventana or Tiburon)
          */
         public LoadDataFunction(String platformName) {
             this.platformName = platformName;
         }
 
         /**
+         * Applies the function to the given ResultSet, extracting CTD data records
+         * and returning them as a List of CtdDatum objects.
+         * @param resultSet The ResultSet to process
+         * @return A List of CtdDatum objects
          *
-         * @param resultSet
-         * @return
-         *
-         * @throws SQLException
+         * @throws SQLException if a database access error occurs while reading from the result set
          */
         @Override
         public List<CtdDatum> apply(ResultSet resultSet) throws SQLException {

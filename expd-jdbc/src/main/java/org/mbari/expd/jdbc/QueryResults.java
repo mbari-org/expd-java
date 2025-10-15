@@ -46,6 +46,10 @@ public class QueryResults {
      */
     private Map<String, Map<Integer, Set<Object>>> duplicateMap;
 
+    /**
+     * Creates a new QueryResults object backed by the provided map.
+     * @param data a map of column names to their value lists
+     */
     public QueryResults(Map<String, List<Object>> data) {
         resultsMap.putAll(data);
     }
@@ -123,6 +127,11 @@ public class QueryResults {
      * Tells the query resultsMap to collasce based on unique values in a column
      * @param key
      */
+    /**
+     * Coalesces duplicate adjacent values in the specified column by collapsing repeated values into a single entry.
+     * This is useful for formatting or display purposes where repeated values are redundant.
+     * @param key the column name to coalesce
+     */
     public void coalesce(String key) {
         duplicateMap = new HashMap<String, Map<Integer, Set<Object>>>();
 
@@ -161,6 +170,10 @@ public class QueryResults {
     /**
      *
      * @return The number of columns of data in the results
+     */
+    /**
+     * Returns the number of columns contained in these results.
+     * @return the column count
      */
     public int columnCount() {
         return resultsMap.keySet().size();

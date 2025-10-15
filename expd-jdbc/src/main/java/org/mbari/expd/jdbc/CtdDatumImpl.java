@@ -30,6 +30,19 @@ public class CtdDatumImpl implements CtdDatum {
     private final Float lightTransmission;
     private final Float pressure;
 
+    /**
+     * Constructs ...
+     * @param platformName The name of the platform that recorded this data.
+     * @param date The date the data was recorded.
+     * @param temperature The temperature of the water in degrees Celsius.
+     * @param salinity The salinity of the water in PSU.
+     * @param oxygen1 The concentration of oxygen in the water in ml/L.
+     * @param oxygen1Flag The quality flag for oxygen1.
+     * @param oxygen2 The concentration of oxygen in the water in ml/L.
+     * @param oxygen2Flag The quality flag for oxygen2.
+     * @param lightTransmission The light transmission of the water in percent.
+     * @param pressure The pressure of the water in dbar.
+     */
     public CtdDatumImpl(String platformName, Date date, Float temperature, Float salinity,
                         Float oxygen1, Integer oxygen1Flag, Float oxygen2, Integer oxygen2Flag,
                         Float lightTransmission, Float pressure) {
@@ -45,21 +58,37 @@ public class CtdDatumImpl implements CtdDatum {
         this.pressure = pressure;
     }
 
+    /**
+     * Returns the pressure of the water in dbar.
+     * @return the pressure
+     */
     @Override
     public Float getPressure() {
         return pressure;
     }
 
+    /**
+     * Returns the date the data was recorded.
+     * @return the date
+     */
     @Override
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Returns the light transmission of the water in percent.
+     * @return the lightTransmission
+     */
     @Override
     public Float getLightTransmission() {
         return lightTransmission;
     }
 
+    /**
+     * Returns the most reliable oxygen concentration using the o2 measurement with the highest quality control flag.
+     * @return the oxygen in ml/L
+     */
     @Override
     public Float getOxygen() {
         if (oxygen == null) {
@@ -72,36 +101,64 @@ public class CtdDatumImpl implements CtdDatum {
         return oxygen;
     }
 
+    /**
+     * Returns the concentration of oxygen in the water in ml/L.
+     * @return the oxygen1
+     */
     @Override
     public Float getOxygen1() {
         return oxygen1;
     }
 
+    /**
+     * Returns the quality flag for oxygen1.
+     * @return the oxygen1Flag
+     */
     @Override
     public Integer getOxygen1Flag() {
         return oxygen1Flag;
     }
 
+    /**
+     * Returns the concentration of oxygen in the water in ml/L.
+     * @return the oxygen2
+     */
     @Override
     public Float getOxygen2() {
         return oxygen2;
     }
 
+    /**
+     * Returns the quality flag for oxygen2.
+     * @return the oxygen2Flag
+     */
     @Override
     public Integer getOxygen2Flag() {
         return oxygen2Flag;
     }
 
+    /**
+     * Returns the name of the platform that recorded this data.
+     * @return the platformName
+     */
     @Override
     public String getPlatformName() {
         return platformName;
     }
 
+    /**
+     * Returns the salinity of the water in PSU.
+     * @return the salinity
+     */
     @Override
     public Float getSalinity() {
         return salinity;
     }
 
+    /**
+     * Returns the temperature of the water in degrees Celsius.
+     * @return the temperature
+     */
     @Override
     public Float getTemperature() {
         return temperature;

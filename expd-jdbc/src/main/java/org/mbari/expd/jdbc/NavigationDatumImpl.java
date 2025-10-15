@@ -55,6 +55,24 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     private final Double shipLongitude;
     private Boolean edited = false;
 
+    /**
+     * Constructs a new NavigationDatumImpl instance with detailed navigation data.
+     *
+     * @param platformName The name of the platform associated with the navigation data.
+     * @param altitude The altitude value measured in meters.
+     * @param date The timestamp representing when the navigation data was recorded.
+     * @param depth The depth value measured in meters.
+     * @param pressure The pressure value measured in decibars.
+     * @param heading The heading value, typically indicating the direction in degrees.
+     * @param latitude The latitude value in decimal degrees.
+     * @param longitude The longitude value in decimal degrees.
+     * @param pitch The pitch value representing the tilt angle of the platform.
+     * @param qcFlag A flag indicating the quality control status of the data.
+     * @param roll The roll value representing the rotation angle of the platform.
+     * @param shipHeading The ship's heading value, typically in degrees.
+     * @param shipLatitude The latitude of the ship's position in decimal degrees.
+     * @param shipLongitude The longitude of the ship's position in decimal degrees.
+     */
     public NavigationDatumImpl(String platformName, Float altitude, Date date, Float depth, Float pressure, Float heading, Double latitude, Double longitude, Float pitch, Boolean qcFlag, Float roll, Float shipHeading, Double shipLatitude, Double shipLongitude) {
         this.platformName = platformName;
         this.altitude = altitude;
@@ -73,13 +91,17 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
 
+    /**
+     *
+     * @return The name of the platform associated with the navigation data.
+     */
     @Override
     public String getPlatformName() {
         return platformName;
     }
 
     /**
-     * @return
+     * @return The altitude value measured in meters.
      */
     @Override
     public Float getAltitude() {
@@ -87,7 +109,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The timestamp representing when the navigation data was recorded.
      */
     @Override
     public Date getDate() {
@@ -95,7 +117,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The depth value measured in meters.
      */
     @Override
     public Float getDepth() {
@@ -103,7 +125,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The pressure value measured in decibars.
      */
     @Override
     public Float getPressure() {
@@ -111,7 +133,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The heading value, typically indicating the direction in degrees.
      */
     @Override
     public Float getHeading() {
@@ -119,7 +141,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The latitude value in decimal degrees.
      */
     @Override
     public Double getLatitude() {
@@ -127,7 +149,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The longitude value in decimal degrees.
      */
     @Override
     public Double getLongitude() {
@@ -135,7 +157,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The pitch value representing the tilt angle of the platform.
      */
     @Override
     public Float getPitch() {
@@ -143,7 +165,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return A flag indicating the quality control status of the data.
      */
     @Override
     public Boolean getQcFlag() {
@@ -151,7 +173,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The roll value representing the rotation angle of the platform.
      */
     @Override
     public Float getRoll() {
@@ -159,7 +181,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The ship's heading value, typically in degrees.
      */
     @Override
     public Float getShipHeading() {
@@ -167,7 +189,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The latitude of the ship's position in decimal degrees.
      */
     @Override
     public Double getShipLatitude() {
@@ -175,7 +197,7 @@ public class NavigationDatumImpl implements NavigationDatum, Comparable<Navigati
     }
 
     /**
-     * @return
+     * @return The longitude of the ship's position in decimal degrees.
      */
     @Override
     public Double getShipLongitude() {

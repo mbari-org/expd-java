@@ -24,10 +24,21 @@ public class ShipNavigationDatumDAOImpl extends BaseDAOImpl implements ShipNavig
 
     public static final String SELECT_COLUMNS = " DatetimeGMT, Latitude, Longitude, Heading";
 
+    /**
+     * Constructs ...
+     * @param params The JDBC parameters
+     */
     public ShipNavigationDatumDAOImpl(JdbcParameters params) {
         super(params);
     }
 
+    /**
+     * Fetches all navigation data for a given ship between the specified start
+     * @param ship The ship name
+     * @param start The start date
+     * @param end The end date
+     * @return A list of navigation data records.
+     */
     @Override
     public List<ShipNavigationDatum> fetchBetweenDates(String ship, Date start, Date end) {
         String table = resolveShipTablePrefix(ship) + "RawNavData";
@@ -38,11 +49,15 @@ public class ShipNavigationDatumDAOImpl extends BaseDAOImpl implements ShipNavig
     }
 
 
-    private class LoadDateFunction implements QueryFunction<List<ShipNavigationDatum>> {
+    private static class LoadDateFunction implements QueryFunction<List<ShipNavigationDatum>> {
 
         private final Calendar calendar = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
         private final String ship;
 
+        /**
+         *
+         * @param ship The ship name
+         */
         private LoadDateFunction(String ship) {
             this.ship = ship;
         }
