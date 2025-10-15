@@ -30,6 +30,10 @@ public class Queryable {
 
     /**
      * Constructs ...
+     * @param jdbcUrl The JDBC URL to the EXPD database.
+     * @param jdbcUsername The username used to connect to the database.
+     * @param jdbcPassword The password used to connect to the database.
+     * @param driverClass Optional. The fully qualified name of the JDBC driver class.
      */
     public Queryable(String jdbcUrl, String jdbcUsername, String jdbcPassword, String driverClass) {
         this.jdbcUrl = jdbcUrl;
@@ -123,6 +127,7 @@ public class Queryable {
 
 
     /**
+     * Opens a connection to the EXPD database.
      * @return A {@link Connection} to the EXPD database. The connection should
      *      be closed when you're done with it.
      * @throws SQLException
