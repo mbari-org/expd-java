@@ -2,33 +2,45 @@
 
 EXPD is a Java API for simplifying access to MBARI's expedition database (also called EXPD). It uses JDBC for data access. It also contains conditional logic to allow tasks such as selecting the best available navigation data and oxygen data.
 
-### To get to the expedition (EXPD) data, you need to add the following repository to your helidon project's pom.xml file:
+## Adding to your project
 
-```xml
-<repositories>
-  <repository>
-    <snapshots>
-      <enabled>false</enabled>
-    </snapshots>
-    <id>bintray-org-mbari-maven</id>
-    <name>bintray</name>
-    <url>https://dl.bintray.com/org-mbari/maven</url>
-  </repository>
-</repositories>
-```
-
-Then add the following dependency:
+This library is available on [Maven Central](https://central.sonatype.com/artifact/org.mbari.expd/expd-jdbc).
 
 ```
 <dependency>
-	<groupId>org.mbari</groupId>
-	<artifactId>expd-jdbc</artifactId>
-	<version>1.5.3.jre11</version>
-	<type>pom</type>
+    <groupId>org.mbari.expd</groupId>
+    <artifactId>expd-jdbc</artifactId>
+    <version>2.0.0</version>
 </dependency>
 ```
 
-## Java pseudo-code examples (expect typos):
+## Usage for developers
+
+You either intialize the DAO with a connection parameters or through environment variables.
+
+```java
+import java.util.Optional;
+import org.mbari.expd.jdbc.DAOFactoryImpl;
+import org.mbari.expd.jdbc.JdbcParameters;
+
+// Using connection parameters
+var jdbcParams = new JdbcParameters("jdbc:mysql://localhost:3306/expd", "root", "password", Optional.of("org.mariadb.jdbc.Driver"));
+DAOFactory daoFactory = new DAOFactoryImpl(jdbcParams);
+
+
+// Using environment variables: set these in your shell or IDE run configuration
+// export EXPD_JDBC_URL="jdbc:mysql://localhost:3306/expd"
+// export EXPD_JDBC_USER="root"
+// export EXPD_JDBC_PASSWORD="password"
+// export EXPD_JDBC_DRIVER="org.mariadb.jdbc.Driver"
+DAOFactory daoFactory = new DAOFactoryImpl(); // will use environment variables
+
+// Use the daoFactory to get DAOs
+var diveDAO = daoFactory.getDiveDAO();
+
+```
+
+###Examples Java pseudo-code examples (expect typos):
 
 ### To get a list of all ROVs
 
@@ -44,7 +56,7 @@ List<String> rovs = BaseDAOImpl.getAllRovNames();
 import org.mbari.expd.DiveDAO;
 import org.mbari.expd.jdbc.DiveDAOImpl;
 
-DiveDAO dao = new DiveDAOImpl();
+DiveDAO dao = daoFactory.getDiveDAO();
 
 Collection<Dive> divesForRov = dao.findByPlatform(rovNameAsString);
 
@@ -53,7 +65,7 @@ Collection<Dive> divesForRov = dao.findByPlatform(rovNameAsString);
 List<Integer> diveNumbersForRov = divesForRov.stream()
         .map(Dive::getDiveNumber)
         .sorted()
-        .collect(Collectors.toList());
+        .toList();
 ```
 
 ### To get a dive object by ROV name and dive number
@@ -62,7 +74,7 @@ List<Integer> diveNumbersForRov = divesForRov.stream()
 import org.mbari.expd.DiveDAO;
 import org.mbari.expd.jdbc.DiveDAOImpl;
 
-DiveDAO dao = new DiveDAOImpl();
+DiveDAO dao = daoFactory.getDiveDAO();
 
 // returns null if no match is found
 Dive dive = dao.findByPlatformAndDiveNumber("Ventana", 123);
@@ -79,7 +91,7 @@ import org.mbari.expd.NavigationDatumDAO;
 import org.mbari.expd.jdbc.NavigationDAOImpl;
 
 // You'll need a Dive object 
-NavigationDAO dao = new NavigationDAOImpl();
+NavigationDAO dao = daoFactory.getNavigationDAO();
 List<NavigationDatum> nav = dao.fetchBestnavigationData(dive);
 ```
 
@@ -92,8 +104,8 @@ import org.mbari.expd.CtdDatumDAO;
 import org.mbari.expd.jdbc.CtdDatumDAOImpl;
 
 // You'll need a Dive object 
-CtdDatumDAO dao = new CtdDatumDAOImpl();
-List<CtdDatum> ctd = dao.fetchCtdData(dive)
+CtdDatumDAO dao = daoFactory.getCtdDatumDAO();
+List<CtdDatum> ctd = dao.fetchCtdData(dive);
 ```
 
 #### Camera logs
@@ -105,6 +117,6 @@ import org.mbari.expd.CameraDatumDAO;
 import org.mbari.expd.jdbc.CameraDatumDAOImpl;
 
 // You'll need a Dive object 
-CameraDatumDAO dao = new CameraDatumDAOImpl();
+CameraDatumDAO dao = daoFactory.getCameraDatumDAO();
 List<CameraDatum> cam = dao.fetchCameraData(dive);
 ```
