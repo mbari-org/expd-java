@@ -1,0 +1,103 @@
+/*
+ * @(#)ShipNavigationDatumImpl.java   2012.05.29 at 02:06:52 PDT
+ *
+ * Copyright 2009 MBARI
+ *
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+
+package org.mbari.expd.jdbc;
+
+import org.mbari.expd.ShipNavigationDatum;
+
+import java.util.Date;
+
+/**
+ * @author Brian Schlining
+ * @since 2012-05-29
+ */
+public class ShipNavigationDatumImpl implements ShipNavigationDatum {
+
+    private String ship;
+    private Date date;
+    private Double heading;
+    private Double latitude;
+    private Double longitude;
+
+    /**
+     * Constructs ...
+     */
+    public ShipNavigationDatumImpl() {}
+
+    /**
+     * Constructs ...
+     *
+     * @param date
+     * @param heading
+     * @param latitude
+     * @param longitude
+     * @param ship
+     */
+    public ShipNavigationDatumImpl(Date date, Double heading, Double latitude, Double longitude,
+                                   String ship) {
+        this.date = date;
+        this.heading = heading;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.ship = ship;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Double getHeading() {
+        return heading;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    @Override
+    public String getShip() {
+        return ship;
+    }
+
+    @Override
+    public int hashCode() {
+        return (ship + " " + date).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return hashCode() == obj.hashCode();
+    }
+}

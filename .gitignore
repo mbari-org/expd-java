@@ -1,0 +1,12 @@
+.idea/
+.project
+.settings/
+.vscode/
+*.iml
+*.versionsBackup
+target/
+
+*.orig
+.classpath
+.cp.txt
+.DS_Store
