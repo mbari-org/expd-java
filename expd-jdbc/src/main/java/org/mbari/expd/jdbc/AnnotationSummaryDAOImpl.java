@@ -6,6 +6,14 @@ import org.mbari.expd.Dive;
 
 import java.util.*;
 
+/**
+ * A Data Access Object (DAO) implementation for handling operations related to
+ * annotation summaries. This class communicates with the database to perform
+ * queries and retrieve data related to annotation summaries, specifically from
+ * the `TapeSummary` table.
+ *
+ * This class extends {@link BaseDAOImpl} and implements {@link AnnotationSummaryDAO}.
+ */
 public class AnnotationSummaryDAOImpl extends BaseDAOImpl implements AnnotationSummaryDAO {
 
     private static final String SELECT_COLUMNS = "a.DiveNumber, a.RovName, a.Camera, a.Notes, a.Mission, " +

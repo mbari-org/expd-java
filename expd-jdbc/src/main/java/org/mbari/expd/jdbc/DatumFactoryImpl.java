@@ -26,8 +26,9 @@ import org.mbari.expd.UberDatum;
 import java.util.Date;
 
 /**
- *
- * @author brian
+ * Implementation of the DatumFactory interface. Provides methods
+ * to create instances of various datum types including CameraDatum,
+ * CtdDatum, NavigationDatum, Dive, and UberDatum.
  */
 public class DatumFactoryImpl implements DatumFactory {
 

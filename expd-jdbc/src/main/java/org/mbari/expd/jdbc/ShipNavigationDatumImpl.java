@@ -20,8 +20,15 @@ import org.mbari.expd.ShipNavigationDatum;
 import java.util.Date;
 
 /**
- * @author Brian Schlining
- * @since 2012-05-29
+ * The ShipNavigationDatumImpl class implements the ShipNavigationDatum interface
+ * and represents navigation data specific to a ship. This includes information such as the
+ * ship's name, its geographical coordinates, heading, and the specific date of the navigation data.
+ *
+ * Instances of this class can be used to encapsulate and retrieve critical navigation-related
+ * properties for a given ship.
+ *
+ * This class supports equality and hashCode computation based on the properties of the
+ * ship's name and the date.
  */
 public class ShipNavigationDatumImpl implements ShipNavigationDatum {
 

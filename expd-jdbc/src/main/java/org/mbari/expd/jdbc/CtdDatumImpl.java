@@ -9,8 +9,12 @@ import java.util.Date;
 import org.mbari.expd.CtdDatum;
 
 /**
+ * Implementation of the {@link CtdDatum} interface that represents a single CTD (Conductivity, Temperature, Depth)
+ * data record. It encapsulates various oceanographic measurements and metadata for a specific time and location.
  *
- * @author brian
+ * This class provides access to values such as temperature, salinity, oxygen concentrations (with quality flags),
+ * light transmission, and pressure, as well as metadata like the platform name and the date the data was recorded.
+ * It also includes logic to determine the most reliable oxygen measurement based on associated quality flags.
  */
 public class CtdDatumImpl implements CtdDatum {
 

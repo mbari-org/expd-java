@@ -3,6 +3,18 @@ package org.mbari.expd.jdbc;
 import java.util.Date;
 import org.mbari.expd.AnnotationSummary;
 
+/**
+ * Implementation of the AnnotationSummary interface that represents
+ * a summary of annotations related to a dive mission. This class
+ * provides detailed information about the dive, including metadata
+ * about the remotely operated vehicle (ROV), camera used, mission, and
+ * the annotation process.
+ *
+ * This class includes properties such as the dive number, ROV name,
+ * camera details, annotator details, timestamps, and other statistics
+ * related to the annotations and video data. It also supports
+ * getters and setters to read and manipulate these properties.
+ */
 public class AnnotationSummaryImpl implements AnnotationSummary {
 
   private Integer diveNumber;

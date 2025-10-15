@@ -39,8 +39,9 @@ import org.mbari.expd.model.VideoTimeBean;
 
 
 /**
- *
- * @author brian
+ * A DAO (Data Access Object) implementation for handling {@link CameraDatum} entities.
+ * Provides methods to retrieve and manipulate camera-related data in a database
+ * within the context of dives or platforms.
  */
 public class CameraDatumDAOImpl extends BaseDAOImpl implements CameraDatumDAO {
 

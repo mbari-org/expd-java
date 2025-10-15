@@ -13,8 +13,12 @@ import java.util.List;
 import java.util.TimeZone;
 
 /**
- * @author Brian Schlining
- * @since 2012-05-29
+ * Implementation of the {@link ShipNavigationDatumDAO} interface for managing
+ * ship navigation data retrieval from a database.
+ *
+ * This class provides methods to query navigation data for ships within a
+ * specified date range. It relies on database interaction functionalities
+ * provided by its parent class {@link BaseDAOImpl}.
  */
 public class ShipNavigationDatumDAOImpl extends BaseDAOImpl implements ShipNavigationDatumDAO {
 

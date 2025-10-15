@@ -13,8 +13,14 @@ import org.mbari.expd.UberDatum;
 import java.util.Date;
 
 /**
+ * Implementation of the {@link UberDatum} interface that encapsulates data from
+ * multiple sources such as Camera, Navigation, and CTD systems. This class also
+ * implements the {@link Comparable} interface, allowing instances to be compared
+ * based on the date associated with the CameraDatum.
  *
- * @author brian
+ * This class serves as a container to manage and provide access to data elements
+ * encapsulated in {@link CameraDatum}, {@link NavigationDatum}, and {@link CtdDatum}.
+ * It includes methods for setting and retrieving the values of these components.
  */
 public class UberDatumImpl implements UberDatum, Comparable<UberDatum> {
 

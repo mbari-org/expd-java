@@ -20,8 +20,16 @@ import java.util.List;
 import java.util.TimeZone;
 
 /**
+ * The ExpeditionDAOImpl class is a concrete implementation of the ExpeditionDAO interface.
+ * It provides methods to interact with Expedition data from the database, performing operations
+ * such as retrieving all expeditions or finding expeditions based on specific criteria.
+ * This implementation uses SQL queries for data retrieval and transformation of ResultSet
+ * objects into a list of Expedition objects.
  *
- * @author brian
+ * The class extends BaseDAOImpl to inherit common database-related functionality and
+ * provides additional implementations specific to Expedition entities. It contains
+ * SQL query definitions and a nested QueryFunction implementation for processing
+ * ResultSet data.
  */
 public class ExpeditionDAOImpl extends BaseDAOImpl implements ExpeditionDAO {
 

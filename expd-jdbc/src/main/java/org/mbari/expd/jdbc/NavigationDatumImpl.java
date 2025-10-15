@@ -19,8 +19,23 @@ import java.util.Date;
 import org.mbari.expd.NavigationDatum;
 
 /**
+ * The NavigationDatumImpl class provides an implementation of the NavigationDatum interface,
+ * representing a data structure that encapsulates navigation information for a platform. This
+ * information includes geographic coordinates, altitude, depth, pressure, headings, pitch,
+ * roll, quality control flags, and timestamps. It is designed to store and manage navigational
+ * data collected from a specific platform or ship.
  *
- * @author brian
+ * Instances of this class are immutable with the exception of the "edited" property, which can
+ * be toggled to indicate whether the data has been modified after its initial creation.
+ *
+ * This class supports comparison based on the date property and provides a string representation
+ * for easy description of the encapsulated data.
+ *
+ * Features:
+ * - Implements NavigationDatum to provide concrete implementations of its methods.
+ * - Supports comparison between navigation data objects using dates.
+ * - Captures and handles key navigation parameters such as latitude, longitude, altitude,
+ *   heading, and depth.
  */
 public class NavigationDatumImpl implements NavigationDatum, Comparable<NavigationDatum> {
 

@@ -31,8 +31,11 @@ import org.mbari.expd.NavigationDatumDAO;
 import org.mbari.expd.math.NearestNeighbor;
 
 /**
- *
- * @author brian
+ * The NavigationDatumDAOImpl class provides an implementation of the NavigationDatumDAO
+ * interface for accessing and managing navigation data, including raw and edited navigation
+ * data associated with specific dives. This class interacts with the database to fetch, process,
+ * and return navigation data for Remote Operated Vehicle (ROV) dives. It also includes logic
+ * for associating navigation data with camera log times and handling nearest neighbor matching.
  */
 public class NavigationDatumDAOImpl extends BaseDAOImpl implements NavigationDatumDAO {
 

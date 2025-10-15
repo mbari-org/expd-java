@@ -9,8 +9,13 @@ import java.util.Date;
 import org.mbari.expd.Dive;
 
 /**
+ * The DiveImpl class provides an implementation of the Dive interface, representing
+ * detailed information about a single dive operation. This class encapsulates properties
+ * such as the dive ID, ROV name, dive number, start and end dates, location coordinates,
+ * the chief scientist, and brief accomplishments of the dive.
  *
- * @author brian
+ * This class supports equality checks, hash value computation, and a descriptive string
+ * representation based on the ROV name, dive number, and time-related properties.
  */
 public class DiveImpl implements Dive {
 

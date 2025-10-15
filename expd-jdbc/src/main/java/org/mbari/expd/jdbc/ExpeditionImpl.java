@@ -20,8 +20,12 @@ import org.mbari.expd.Expedition;
 import java.util.Date;
 
 /**
- * @author Brian Schlining
- * @since 2012-06-20
+ * Implementation of the Expedition interface, representing specific details about an expedition.
+ *
+ * This class provides access to detailed information about an expedition, including its ID,
+ * scientific goals, participants, timeframes, and associated comments or descriptions.
+ * It serves as a concrete implementation of the Expedition interface, providing required getters
+ * for each property defined in the interface.
  */
 public class ExpeditionImpl implements Expedition {
 

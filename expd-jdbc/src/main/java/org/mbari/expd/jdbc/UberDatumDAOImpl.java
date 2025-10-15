@@ -24,8 +24,10 @@ import org.mbari.expd.UberDatum;
 import org.mbari.expd.UberDatumDAO;
 
 /**
- *
- * @author brian
+ * Implementation of the {@link UberDatumDAO} interface, providing methods to fetch
+ * combined data from camera, navigation, and CTD (Conductivity, Temperature, Depth) sources.
+ * This DAO is responsible for aggregating data from these multiple sources and organizing it
+ * into {@link UberDatum} objects that encapsulate data points from all three sources.
  */
 public class UberDatumDAOImpl implements UberDatumDAO {
 

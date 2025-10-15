@@ -21,8 +21,10 @@ import org.mbari.expd.math.NearestNeighbor;
 
 
 /**
- *
- * @author brian
+ * This class is an implementation of the CtdDatumDAO interface for accessing and
+ * fetching CTD (Conductivity, Temperature, Depth) data records from a database.
+ * It extends the BaseDAOImpl class to provide common database operations and
+ * utilities.
  */
 public class CtdDatumDAOImpl extends BaseDAOImpl implements CtdDatumDAO {
     

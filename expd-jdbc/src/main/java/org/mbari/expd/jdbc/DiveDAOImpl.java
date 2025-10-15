@@ -23,8 +23,14 @@ import org.mbari.expd.Expedition;
 import org.mbari.expd.math.Envelope;
 
 /**
+ * Implementation of the {@link DiveDAO} interface, providing methods to interact
+ * with dive-related data in a database. This class is responsible for querying,
+ * retrieving, and parsing data related to dives based on various criteria, such
+ * as platform, tracking numbers, geographical locations, and expeditions.
  *
- * @author brian
+ * This implementation extends {@link BaseDAOImpl} to reuse common database operations
+ * and functionality, and it uses SQL queries to fetch dive data by utilizing specific
+ * filtering and joining logic with related database entities.
  */
 public class DiveDAOImpl extends BaseDAOImpl implements DiveDAO {
 

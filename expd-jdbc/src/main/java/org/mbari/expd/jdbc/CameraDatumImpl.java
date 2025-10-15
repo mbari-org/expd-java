@@ -9,8 +9,16 @@ import java.util.Date;
 import org.mbari.expd.CameraDatum;
 
 /**
+ * The CameraDatumImpl class is an implementation of the CameraDatum interface that represents
+ * various attributes of a camera capture datum, such as its platform name, recording date,
+ * timecode, focus, zoom, and iris levels.
  *
- * @author brian
+ * This class also implements the Comparable interface to allow comparisons based on the date.
+ *
+ * Features:
+ * - Encapsulation of metadata related to camera captures.
+ * - Comparison of instances by date.
+ * - Overrides the equals, hashCode, and toString methods for proper equality checks and meaningful string representation.
  */
 public class CameraDatumImpl implements CameraDatum, Comparable<CameraDatum> {
 
